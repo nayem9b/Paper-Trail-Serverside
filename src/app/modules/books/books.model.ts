@@ -1,21 +1,24 @@
 import { Schema, model } from "mongoose";
 import { IBooks } from "./books.interface";
 const bookSchema = new Schema<IBooks>({
-  Title: {
+  title: {
     type: String,
     required: true,
   },
-  Author: {
+  author: {
     type: String,
     required: true,
   },
-  Genre: {
+  genre: {
     type: String,
     required: true,
   },
   publicationDate: {
     type: String,
     required: true,
+  },
+  postedBy: {
+    type: String,
   },
 });
 

@@ -3,6 +3,7 @@ export interface IBooks {
   author: string;
   genre: string;
   publicationDate: string;
+  postedBy?: string;
 }
 export type IBookFilters = {
   searchTerm?: string;
