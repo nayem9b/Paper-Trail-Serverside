@@ -4,10 +4,13 @@ import catchAsync from "../../../shared/catchAsync";
 import { getAllbooksFromDB } from "./books.service";
 import sendResponse from "../../../shared/sendResponse";
 import { IBooks } from "./books.interface";
+import pick from "../../../shared/pick";
+import { bookFilterableFields } from "./books.constant";
 
 export const getAllbooks = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    const allBooks = await getAllbooksFromDB();
+    const filters = pick(req.query, bookFilterableFields);
+    const allBooks = await getAllbooksFromDB(filters);
     sendResponse<IBooks[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
