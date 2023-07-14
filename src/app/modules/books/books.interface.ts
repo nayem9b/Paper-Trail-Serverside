@@ -1,6 +1,6 @@
 export interface IBooks {
-  Title: string;
-  Author: string;
-  Genre: string;
+  title: string;
+  author: string;
+  genre: string;
   publicationDate: string;
 }
