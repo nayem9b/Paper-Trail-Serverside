@@ -5,6 +5,7 @@ import {
   createBookToDB,
   getAllbooksFromDB,
   getSpecificBookFromDB,
+  updateSpecificBookFromDB,
 } from "./books.service";
 import sendResponse from "../../../shared/sendResponse";
 import { IBooks } from "./books.interface";
@@ -45,6 +46,20 @@ export const getSpecificBook = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Books retrieved successfully !",
+      data: result,
+    });
+  }
+);
+
+export const updateSpecificBook = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const updateData = req.body;
+    const result = await updateSpecificBookFromDB(id, updateData);
+    sendResponse<IBooks>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book UPDATED successfully !",
       data: result,
     });
   }

@@ -48,3 +48,12 @@ export const getSpecificBookFromDB = async (payload: string) => {
   });
   return specificBook;
 };
+
+export const updateSpecificBookFromDB = async (
+  id: string,
+  payload: Partial<IBooks>
+) => {
+  const filter = { _id: new ObjectId(id) };
+  const result = await Books.findOneAndUpdate(filter, payload, { new: true });
+  return result;
+};
