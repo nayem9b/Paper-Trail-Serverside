@@ -58,6 +58,7 @@ export const updateSpecificBook = catchAsync(
     const id = req.params.id;
     const updateData = req.body;
     const result = await updateSpecificBookFromDB(id, updateData);
+
     sendResponse<IBooks>(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -69,8 +70,10 @@ export const updateSpecificBook = catchAsync(
 
 export const deleteSpecificBook = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
+    // console.log(id, result);
     const id = req.params.id;
     const result = await deleteSpecificBookFromDB(id);
+    // console.log(JSON.stringify(id));
     sendResponse<IBooks>(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -84,6 +87,7 @@ export const updateComment = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const updateData = req.body;
+
     const result = await updateBookCommentToDB(id, updateData);
     sendResponse(res, {
       statusCode: httpStatus.OK,
