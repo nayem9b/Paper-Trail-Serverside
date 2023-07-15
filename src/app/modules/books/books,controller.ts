@@ -7,6 +7,7 @@ import {
   getAllbooksFromDB,
   getSpecificBookFromDB,
   updateSpecificBookFromDB,
+  updateBookCommentToDB,
 } from "./books.service";
 import sendResponse from "../../../shared/sendResponse";
 import { IBooks } from "./books.interface";
@@ -74,6 +75,20 @@ export const deleteSpecificBook = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Book DELETED successfully !",
+      data: result,
+    });
+  }
+);
+
+export const updateComment = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const updateData = req.body;
+    const result = await updateBookCommentToDB(id, updateData);
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book UPDATED successfully !",
       data: result,
     });
   }

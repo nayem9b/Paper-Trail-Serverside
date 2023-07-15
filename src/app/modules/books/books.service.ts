@@ -64,3 +64,11 @@ export const deleteSpecificBookFromDB = async (
   const result = await Books.findByIdAndDelete(id);
   return result;
 };
+
+export const updateBookCommentToDB = async (id: string, payload: string) => {
+  const result = await Books.updateOne(
+    { _id: id },
+    { $push: { reviews: payload } }
+  );
+  return result;
+};

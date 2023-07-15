@@ -22,8 +22,9 @@ const bookSchema = new Schema<IBooks>({
     required: true,
   },
   reviews: {
-    type: String,
+    type: [String],
     required: true,
+    default: [],
   },
   postedBy: {
     type: String,
