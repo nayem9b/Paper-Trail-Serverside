@@ -65,10 +65,14 @@ export const deleteSpecificBookFromDB = async (
   return result;
 };
 
-export const updateBookCommentToDB = async (id: string, payload: string) => {
-  const result = await Books.updateOne(
-    { _id: id },
-    { $push: { reviews: payload } }
+export const updateBookCommentToDB = async (
+  id: string,
+  payload: Partial<IBooks[]>
+) => {
+  const result = await Books.findOneAndUpdate(
+    { _id: new ObjectId(id) },
+    payload,
+    { new: true }
   );
   return result;
 };

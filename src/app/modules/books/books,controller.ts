@@ -87,6 +87,7 @@ export const updateComment = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const updateData = req.body;
+    console.log(id, updateData);
 
     const result = await updateBookCommentToDB(id, updateData);
     sendResponse(res, {
