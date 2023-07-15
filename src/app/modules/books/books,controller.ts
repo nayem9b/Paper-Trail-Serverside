@@ -3,6 +3,7 @@ import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import {
   createBookToDB,
+  deleteSpecificBookFromDB,
   getAllbooksFromDB,
   getSpecificBookFromDB,
   updateSpecificBookFromDB,
@@ -60,6 +61,19 @@ export const updateSpecificBook = catchAsync(
       statusCode: httpStatus.OK,
       success: true,
       message: "Book UPDATED successfully !",
+      data: result,
+    });
+  }
+);
+
+export const deleteSpecificBook = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const result = await deleteSpecificBookFromDB(id);
+    sendResponse<IBooks>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Book DELETED successfully !",
       data: result,
     });
   }

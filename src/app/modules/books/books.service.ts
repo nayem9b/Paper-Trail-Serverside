@@ -57,3 +57,10 @@ export const updateSpecificBookFromDB = async (
   const result = await Books.findOneAndUpdate(filter, payload, { new: true });
   return result;
 };
+
+export const deleteSpecificBookFromDB = async (
+  id: string
+): Promise<IBooks | null> => {
+  const result = await Books.findByIdAndDelete(id);
+  return result;
+};
