@@ -4,6 +4,8 @@ export interface IBooks {
   genre: string;
   publicationDate: string;
   postedBy?: string;
+  image: string;
+  reviews?: string[];
 }
 export type IBookFilters = {
   searchTerm?: string;

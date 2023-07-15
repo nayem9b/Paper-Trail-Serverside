@@ -2,6 +2,7 @@ import { IGenericresponse } from "../../../interface/common";
 import { bookSearchableFields } from "./books.constant";
 import { IBookFilters, IBooks } from "./books.interface";
 import { Books } from "./books.model";
+import { ObjectId } from "mongodb";
 
 export const getAllbooksFromDB = async (
   filters: IBookFilters
@@ -39,4 +40,11 @@ export const createBookToDB = async (payload: IBooks): Promise<IBooks> => {
   await book.save();
   console.log(book);
   return book;
+};
+
+export const getSpecificBookFromDB = async (payload: string) => {
+  const specificBook = await Books.find({
+    _id: new ObjectId(payload),
+  });
+  return specificBook;
 };
