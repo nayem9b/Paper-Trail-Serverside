@@ -40,8 +40,9 @@ export const updateWishlist = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const id = req.params.id;
     const updatedData = req.body;
+    console.log(id, updatedData);
     const result = await updateWishlistFromDB(id, updatedData);
-    sendResponse<IWishlist>(res, {
+    sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "Wishlist UPDATED successfully !",

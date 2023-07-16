@@ -17,10 +17,7 @@ export const getUserWishlistFromDB = async (
   return wishlist;
 };
 
-export const updateWishlistFromDB = async (
-  id: string,
-  payload: Partial<IWishlist>
-) => {
+export const updateWishlistFromDB = async (id: string, payload) => {
   const filter = { _id: new ObjectId(id) };
   const result = await Wishlist.findOneAndUpdate(filter, payload, {
     new: true,
