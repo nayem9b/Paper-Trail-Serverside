@@ -5,4 +5,5 @@ export interface IWishlist {
   publicationDate: string;
   image: string;
   user: string;
+  status: string;
 }

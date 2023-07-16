@@ -27,6 +27,10 @@ const wishListSchema = new Schema<IWishlist>({
     type: String,
     required: true,
   },
+  status: {
+    type: String,
+    default: "will read",
+  },
 });
 
 export const Wishlist = model<IWishlist>("wishlist", wishListSchema);

@@ -5,7 +5,11 @@ import catchAsync from "../../../shared/catchAsync";
 import sendResponse from "../../../shared/sendResponse";
 
 import { IWishlist } from "./wishlist.interface";
-import { createWishlistToDB, getUserWishlistFromDB } from "./wishlist.service";
+import {
+  createWishlistToDB,
+  getUserWishlistFromDB,
+  updateWishlistFromDB,
+} from "./wishlist.service";
 export const createWishlist = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const data = req.body;
@@ -28,6 +32,20 @@ export const getUserWishlist = catchAsync(
       success: true,
       message: "Wishlist retrived successfully !",
       data: allWishlist,
+    });
+  }
+);
+
+export const updateWishlist = catchAsync(
+  async (req: Request, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const updatedData = req.body;
+    const result = await updateWishlistFromDB(id, updatedData);
+    sendResponse<IWishlist>(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: "Wishlist UPDATED successfully !",
+      data: result,
     });
   }
 );
